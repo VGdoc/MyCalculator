@@ -8,9 +8,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/calc_background"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:theme="@android:style/Theme.Black.NoTitleBar">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/headerImage"
@@ -21,6 +22,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/calc" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+
+
     <TextView
         android:id="@+id/summaries"
         android:layout_width="match_parent"
@@ -30,16 +40,17 @@
         android:gravity="end"
         android:text="@string/summaries"
         android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerImage" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:columnCount="4"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/summaries">
@@ -74,24 +85,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/_7"
-            android:backgroundTint="@color/orange"
             android:textSize="30sp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/_8"
-            android:backgroundTint="@color/orange"
             android:textSize="30sp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:text="@string/_9"
             android:backgroundTint="@color/orange"
+            android:text="@string/_9"
             android:textSize="30sp" />
 
         <Button
@@ -105,24 +116,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/_4"
-            android:backgroundTint="@color/orange"
             android:textSize="30sp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/_5"
-            android:backgroundTint="@color/orange"
             android:textSize="30sp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:text="@string/_6"
             android:backgroundTint="@color/orange"
+            android:text="@string/_6"
             android:textSize="30sp" />
 
         <Button
@@ -136,24 +147,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/_1"
-            android:backgroundTint="@color/orange"
             android:textSize="30sp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/_2"
-            android:backgroundTint="@color/orange"
             android:textSize="30sp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:text="@string/_3"
             android:backgroundTint="@color/orange"
+            android:text="@string/_3"
             android:textSize="30sp" />
 
         <Button
@@ -169,21 +180,23 @@
             android:layout_margin="2dp"
             android:text="@string/_."
             android:textSize="30sp" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:text="@string/_0"
             android:backgroundTint="@color/orange"
+            android:text="@string/_0"
             android:textSize="30sp" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:text="@string/_equals"
-            android:backgroundTint="@color/light_red"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
+            android:layout_margin="2dp"
+            android:backgroundTint="@color/light_red"
+            android:text="@string/_equals"
             android:textSize="30sp" />
 
     </GridLayout>
