@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--Я выбрал ConstraintLayout для своего проекта, т.к. он наиболее функционален,
-и это отличный способ научится с ним работать-->
+и это отличный способ научится с ним работать
+а внуть него я вставил LinearLayout чтобы собрать вместе функциональную часть интерфейса.
+Кнопки я решил обрамлять с помощью GridLayout для разнообразия-->
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
