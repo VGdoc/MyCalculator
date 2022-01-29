@@ -59,7 +59,7 @@
         android:id="@+id/button_backspace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_backspaсe"
+        android:text="@string/_backspace"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toTopOf="@+id/button_clear"
         app:layout_constraintEnd_toEndOf="parent"
