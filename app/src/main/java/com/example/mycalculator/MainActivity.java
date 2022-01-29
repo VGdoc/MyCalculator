@@ -12,7 +12,6 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final Calc calc = new Calc();
     long numberToDisplay; // переменная содержит значения для отображения
     final int DIGIT_RATE = 10; // константа для увеличения отображаемого числа
 
@@ -180,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
      * @param digit какую цифу добавить
      */
     private void addDigitsToDisplay(int digit){
-        numberToDisplay = numberToDisplay * DIGIT_RATE + digit;
+        numberToDisplay = Calc.addNewDigit(numberToDisplay,digit);
         summaries.setText(Long.toString(numberToDisplay));
     }
 

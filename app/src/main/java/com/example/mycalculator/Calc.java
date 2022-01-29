@@ -1,18 +1,15 @@
 package com.example.mycalculator;
 
-import android.annotation.SuppressLint;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import androidx.annotation.IdRes;
 
 public class Calc {
 
-
-
-
-
-
+    /**
+     * Метод добавляет цифры к старому числу, увеличивая его на 1 разряд
+     * @param oldNumber число, которое необходимо увеличить
+     * @param digit какую цифу добавить
+     */
+    public static long addNewDigit(long oldNumber, int digit) {
+        return oldNumber * 10 + digit;
+    }
 
 }
