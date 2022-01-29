@@ -61,32 +61,41 @@ public class Calc {
                     break;
                 case (R.id.button_coma):
                     //TODO
+                    summaries.setText((String)"Функционал в разработке");
                     break;
                     /////////////////////////////////////////////////// кнопки управления
                 case (R.id.button_clear):
                     numberToDisplay = 0;
                     summaries.setText(Long.toString(numberToDisplay));
+                    break;
                 case (R.id.button_backspace):
                     //TODO
+                    summaries.setText((String)"Функционал в разработке");
                     break;
                     /////////////////////////////////////////////////// кнопки действий
                 case (R.id.button_persent): // %
                     //TODO
+                    summaries.setText((String)"Функционал в разработке");
                     break;
                 case (R.id.button_division): // деление
                      //TODO
+                    summaries.setText((String)"Функционал в разработке");
                     break;
                 case (R.id.button_multiplication): // *
                      //TODO
+                    summaries.setText((String)"Функционал в разработке");
                     break;
                 case (R.id.button_substraction): // -
                     //TODO
+                    summaries.setText((String)"Функционал в разработке");
                     break;
                 case (R.id.button_addition): // +
                     //TODO
+                    summaries.setText((String)"Функционал в разработке");
                     break;
                 case (R.id.button_equals): // =
                     //TODO
+                    summaries.setText((String)"Функционал в разработке");
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + view.getId());
