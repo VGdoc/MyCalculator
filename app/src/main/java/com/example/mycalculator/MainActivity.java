@@ -105,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
     };
 
     /**
-     * Список существующих кнопок, содержащих свои ID
+     * Список существующих кнопок, содержащих свой ID
+     * Если сюда добавть кнопку с ID и прописать ей onClick выше,
+     * то по-идее ничего не сломается и кнопка будет работать
      */
     enum ExistButtons {
 
@@ -180,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         summaries = findViewById(R.id.summaries);
-        summaries.setText(Long.toString(0));
+        summaries.setText(Long.toString(Calc.START_NUMBER_ON_DISPLAY));
     }
 
     /**

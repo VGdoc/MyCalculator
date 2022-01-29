@@ -7,8 +7,9 @@ import android.os.Parcelable;
 public class Calc implements Parcelable {
 
 
+    protected static final int START_NUMBER_ON_DISPLAY = 0; //стартовое значения поля TextView
     private static long numberToDisplay; // переменная содержит значения для отображения
-    static final int DIGIT_RATE = 10; // константа для увеличения отображаемого числа
+    private static final int DIGIT_RATE = 10; // константа для увеличения отображаемого числа
 
     protected Calc(Parcel in) {
     }
@@ -41,7 +42,7 @@ public class Calc implements Parcelable {
     }
 
     public static void reset() {
-        numberToDisplay = 0;
+        numberToDisplay = START_NUMBER_ON_DISPLAY;
     }
 
     @Override
