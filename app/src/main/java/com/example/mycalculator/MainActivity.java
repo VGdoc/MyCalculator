@@ -12,9 +12,6 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    long numberToDisplay; // переменная содержит значения для отображения
-    final int DIGIT_RATE = 10; // константа для увеличения отображаемого числа
-
     protected TextView summaries; // поле отображения
     private final Button[] buttons = new Button[ExistButtons.values().length]; // массив всех кнопок калькулятора
 
@@ -68,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 /////////////////////////////////////////////////// кнопки управления
                 case (R.id.button_clear):
-                    numberToDisplay = 0;
-                    summaries.setText(Long.toString(numberToDisplay));
+                    Calc.reset();
+                    summaries.setText(Long.toString(Calc.getNumberToDisplay()));
                     break;
                 case (R.id.button_backspace):
                     //TODO
@@ -179,8 +176,8 @@ public class MainActivity extends AppCompatActivity {
      * @param digit какую цифу добавить
      */
     private void addDigitsToDisplay(int digit){
-        numberToDisplay = Calc.addNewDigit(numberToDisplay,digit);
-        summaries.setText(Long.toString(numberToDisplay));
+        Calc.addNewDigit(digit);
+        summaries.setText(Long.toString(Calc.getNumberToDisplay()));
     }
 
 }
