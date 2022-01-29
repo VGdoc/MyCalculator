@@ -1,6 +1,7 @@
 package com.example.mycalculator;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -148,6 +149,17 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         setListeners();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        summaries.setText(Long.toString(Calc.getNumberToDisplay()));
     }
 
     /**
