@@ -14,6 +14,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private static String savedScreenState = Long.toString(Calc.START_NUMBER_ON_DISPLAY);
+    private static int currentTheme = R.style.Theme_MyCalculator;
     protected TextView summaries; // поле отображения
     private final Button[] buttons = new Button[ExistButtons.values().length]; // массив всех кнопок калькулятора
 
@@ -99,6 +100,19 @@ public class MainActivity extends AppCompatActivity {
                     //TODO
                     summaries.setText((String) "равно в разработке");
                     break;
+                    ////////////////////////////////////////////// радиокнопки для переключния темы
+                case (R.id.rb_cyan_theme): // бирюзовая тема
+                    currentTheme = R.style.NiceCyan;
+                    recreate();
+                    break;
+                case (R.id.rb_pink_theme): // розовая тема
+                    currentTheme = R.style.NicePink;
+                    recreate();
+                    break;
+                case (R.id.rb_default_theme): // стандартная тема
+                    currentTheme = R.style.Theme_MyCalculator;
+                    recreate();
+                    break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + view.getId());
             }
@@ -131,8 +145,10 @@ public class MainActivity extends AppCompatActivity {
         CLEAR(R.id.button_clear),
         BACKSPACE(R.id.button_backspace),
         DOUBLE_ZERO(R.id.button_00),
-        PERSENT(R.id.button_persent);
-
+        PERSENT(R.id.button_persent),
+        RADIO_BUTTON_CYAN(R.id.rb_cyan_theme),
+        RADIO_BUTTON_PINK(R.id.rb_pink_theme),
+        RADIO_BUTTON_DEFAULT(R.id.rb_default_theme);
         private final int layoutID;
 
         ExistButtons(@IdRes int layoutID) {
@@ -147,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(currentTheme);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
