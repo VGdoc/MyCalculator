@@ -13,6 +13,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static String savedScreenState = Long.toString(Calc.START_NUMBER_ON_DISPLAY);
     protected TextView summaries; // поле отображения
     private final Button[] buttons = new Button[ExistButtons.values().length]; // массив всех кнопок калькулятора
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case (R.id.button_coma):
                     //TODO
-                    summaries.setText((String)"Функционал в разработке");
+                    summaries.setText((String) "Функционал в разработке");
                     break;
                 /////////////////////////////////////////////////// кнопки управления
                 case (R.id.button_clear):
@@ -71,32 +72,32 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case (R.id.button_backspace):
                     //TODO
-                    summaries.setText((String)"Бекспейс в разработке");
+                    summaries.setText((String) "Бекспейс в разработке");
                     break;
                 /////////////////////////////////////////////////// кнопки действий
                 case (R.id.button_persent): // %
                     //TODO
-                    summaries.setText((String)"Процент в разработке");
+                    summaries.setText((String) "Процент в разработке");
                     break;
                 case (R.id.button_division): // деление
                     //TODO
-                    summaries.setText((String)"деление в разработке");
+                    summaries.setText((String) "деление в разработке");
                     break;
                 case (R.id.button_multiplication): // *
                     //TODO
-                    summaries.setText((String)"умножение в разработке");
+                    summaries.setText((String) "умножение в разработке");
                     break;
                 case (R.id.button_substraction): // -
                     //TODO
-                    summaries.setText((String)"вычитание в разработке");
+                    summaries.setText((String) "вычитание в разработке");
                     break;
                 case (R.id.button_addition): // +
                     //TODO
-                    summaries.setText((String)"додавание в разработке");
+                    summaries.setText((String) "додавание в разработке");
                     break;
                 case (R.id.button_equals): // =
                     //TODO
-                    summaries.setText((String)"равно в разработке");
+                    summaries.setText((String) "равно в разработке");
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + view.getId());
@@ -156,12 +157,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        savedScreenState = String.valueOf(summaries.getText());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        summaries.setText(Long.toString(Calc.getNumberToDisplay()));
+        summaries.setText(savedScreenState);
     }
 
     /**
@@ -169,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void setListeners() {
         for (Button b : buttons) {
-                b.setOnClickListener(listener);
+            b.setOnClickListener(listener);
         }
     }
 
@@ -177,19 +179,20 @@ public class MainActivity extends AppCompatActivity {
      * инициализирует все интерактивные элементы
      */
     public void init() {
-        for (int i = 0; i < ExistButtons.values().length; i++){
+        for (int i = 0; i < ExistButtons.values().length; i++) {
             buttons[i] = findViewById(ExistButtons.values()[i].getLayoutID());
         }
 
         summaries = findViewById(R.id.summaries);
-        summaries.setText(Long.toString(Calc.START_NUMBER_ON_DISPLAY));
+        summaries.setText(savedScreenState);
     }
 
     /**
      * Метод добавляет цифры на дисплей при нажатии на цифровые кнопки
+     *
      * @param digit какую цифу добавить
      */
-    private void addDigitsToDisplay(int digit){
+    private void addDigitsToDisplay(int digit) {
         Calc.addNewDigit(digit);
         summaries.setText(Long.toString(Calc.getNumberToDisplay()));
     }
