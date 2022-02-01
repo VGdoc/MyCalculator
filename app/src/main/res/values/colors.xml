@@ -28,4 +28,8 @@
     <color name="pink_700">#C2185B</color>
     <color name="pink_800">#AD1457</color>
 
+    <color name="dark_blue">#0F1A65</color>
+    <color name="dark_gray">#3E393B</color>
+    <color name="dark_green">#214A03</color>
+    <color name="light_yellow">#CDAC76</color>
 </resources>
