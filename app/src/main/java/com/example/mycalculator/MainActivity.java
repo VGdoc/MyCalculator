@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 /////////////////////////////////////////////////// кнопки управления
                 case (R.id.button_clear):
                     Calc.reset();
-                    summaries.setText(Long.toString(Calc.getNumberToDisplay()));
+                    summaries.setText(Double.toString(Calc.getNumberToDisplay()));
                     break;
                 case (R.id.button_backspace):
                     //TODO
@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
                     summaries.setText((String) "вычитание в разработке");
                     break;
                 case (R.id.button_addition): // +
-                    //TODO
-                    summaries.setText((String) "додавание в разработке");
+                    Calc.newOperation(Calc.Operations.PLUS);
+                    renewSummaries();
                     break;
                 case (R.id.button_equals): // =
                     //TODO
@@ -222,7 +222,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private void addDigitsToDisplay(int digit) {
         Calc.addNewDigit(digit);
-        summaries.setText(Long.toString(Calc.getNumberToDisplay()));
+        renewSummaries();
+    }
+
+    private void renewSummaries(){
+            //summaries.setText(Double.toString(Calc.getNumberToDisplay()));
+            summaries.setText(String.format("%.0f",Calc.getNumberToDisplay()));
     }
 
 }
