@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +17,10 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String THEME_SETTINGS = "theme_settings";
     public static final String SUCCESS_MESSEGE = "theme_changed";
     public static final int SUCCESS_CODE = 777;
     private static String savedScreenState = Long.toString(Calc.START_NUMBER_ON_DISPLAY);
-    private static int currentTheme = R.style.Theme_MyCalculator;
     protected TextView summaries; // поле отображения
     private final Button[] buttons = new Button[ExistButtons.values().length]; // массив всех кнопок этой активити
 
@@ -105,10 +106,10 @@ public class MainActivity extends AppCompatActivity {
                     //TODO
                     summaries.setText((String) "равно в разработке");
                     break;
-                    /////////////////////////////////////////// настройки темы
+                /////////////////////////////////////////// настройки темы
                 case (R.id.settings): // настройик темы
-                    Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
-                    startActivityForResult(intent,SUCCESS_CODE);
+                    Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivityForResult(intent, SUCCESS_CODE);
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + view.getId());
@@ -119,9 +120,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SUCCESS_CODE && resultCode == RESULT_OK){
+        if (requestCode == SUCCESS_CODE && resultCode == RESULT_OK) {
             summaries.setText(R.string.theme_changed_successfully);
-            if(data.getExtras() != null){
+            if (data.getExtras() != null) {
+                recreate();
                 summaries.setText(data.getStringExtra(SUCCESS_MESSEGE));
             }
         }
@@ -169,7 +171,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(currentTheme);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.THEME_SETTINGS, MODE_PRIVATE);
+        setTheme(sharedPreferences.getInt(THEME_SETTINGS, R.style.Theme_MyCalculator));
+
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
 

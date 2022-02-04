@@ -4,6 +4,7 @@ import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,20 +21,23 @@ public class SettingsActivity extends AppCompatActivity {
                 ////////////////////////////////////////////// радиокнопки для переключния темы
                 case (R.id.rb_cyan_theme): // бирюзовая тема
                     currentTheme = R.style.NiceCyan;
-                    recreate();
                     break;
                 case (R.id.rb_pink_theme): // розовая тема
                     currentTheme = R.style.NicePink;
-                    recreate();
                     break;
                 case (R.id.rb_default_theme): // стандартная тема
                     currentTheme = R.style.Theme_MyCalculator;
-                    recreate();
                     break;
                 case (R.id.save_exit): // сохранить и выйти
                     Intent intent = new Intent();
                     intent.putExtra(MainActivity.SUCCESS_MESSEGE, getString(R.string.theme_changed_successfully));
                     SettingsActivity.this.setResult(RESULT_OK, intent);
+
+                    // сохранение настроек
+                    SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.THEME_SETTINGS, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt(MainActivity.THEME_SETTINGS, currentTheme);
+                    editor.apply();
                     finish();
                     break;
                 default:
@@ -61,7 +65,10 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(currentTheme);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.THEME_SETTINGS, MODE_PRIVATE);
+        setTheme(sharedPreferences.getInt(MainActivity.THEME_SETTINGS, R.style.Theme_MyCalculator));
+
         setContentView(R.layout.settings_activity);
 
         init();
