@@ -80,13 +80,18 @@ public class Calc implements Parcelable {
                 case PLUS:
                     result = result + numberToDisplay;
                     numberToDisplay = result;
+                    break;
             }
         } else {
             result = numberToDisplay;
         }
 
-
         isResultShow = true;
         currentOperation = operation;
+    }
+
+    public static void showEquals(){
+        newOperation(currentOperation);
+        currentOperation = null;
     }
 }

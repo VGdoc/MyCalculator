@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 /////////////////////////////////////////////////// кнопки управления
                 case (R.id.button_clear):
                     Calc.reset();
-                    summaries.setText(Double.toString(Calc.getNumberToDisplay()));
+                    renewSummaries();
                     break;
                 case (R.id.button_backspace):
                     //TODO
@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
                     renewSummaries();
                     break;
                 case (R.id.button_equals): // =
-                    //TODO
-                    summaries.setText((String) "равно в разработке");
+                    Calc.showEquals();
+                    renewSummaries();
                     break;
                 /////////////////////////////////////////// настройки темы
                 case (R.id.settings): // настройик темы
@@ -226,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void renewSummaries(){
-            //summaries.setText(Double.toString(Calc.getNumberToDisplay()));
             summaries.setText(String.format("%.0f",Calc.getNumberToDisplay()));
     }
 
