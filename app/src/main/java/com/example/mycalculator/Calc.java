@@ -81,6 +81,14 @@ public class Calc implements Parcelable {
                     result = result + numberToDisplay;
                     numberToDisplay = result;
                     break;
+                case MINUS:
+                    result = result - numberToDisplay;
+                    numberToDisplay = result;
+                    break;
+                case MULTIPLY:
+                    result = result * numberToDisplay;
+                    numberToDisplay = result;
+                    break;
             }
         } else {
             result = numberToDisplay;

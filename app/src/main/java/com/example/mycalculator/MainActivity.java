@@ -91,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
                     summaries.setText((String) "деление в разработке");
                     break;
                 case (R.id.button_multiplication): // *
-                    //TODO
-                    summaries.setText((String) "умножение в разработке");
+                    Calc.newOperation(Calc.Operations.MULTIPLY);
+                    renewSummaries();
                     break;
                 case (R.id.button_substraction): // -
-                    //TODO
-                    summaries.setText((String) "вычитание в разработке");
+                    Calc.newOperation(Calc.Operations.MINUS);
+                    renewSummaries();
                     break;
                 case (R.id.button_addition): // +
                     Calc.newOperation(Calc.Operations.PLUS);
