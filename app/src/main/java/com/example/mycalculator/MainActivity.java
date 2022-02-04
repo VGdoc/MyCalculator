@@ -1,9 +1,12 @@
 package com.example.mycalculator;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +16,12 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String SUCCESS_MESSEGE = "theme_changed";
+    public static final int SUCCESS_CODE = 777;
     private static String savedScreenState = Long.toString(Calc.START_NUMBER_ON_DISPLAY);
     private static int currentTheme = R.style.Theme_MyCalculator;
     protected TextView summaries; // поле отображения
-    private final Button[] buttons = new Button[ExistButtons.values().length]; // массив всех кнопок калькулятора
+    private final Button[] buttons = new Button[ExistButtons.values().length]; // массив всех кнопок этой активити
 
     /**
      * Листенер класса. Содержит все действия для кнопок калькулятора
@@ -100,24 +105,27 @@ public class MainActivity extends AppCompatActivity {
                     //TODO
                     summaries.setText((String) "равно в разработке");
                     break;
-                    ////////////////////////////////////////////// радиокнопки для переключния темы
-                case (R.id.rb_cyan_theme): // бирюзовая тема
-                    currentTheme = R.style.NiceCyan;
-                    recreate();
-                    break;
-                case (R.id.rb_pink_theme): // розовая тема
-                    currentTheme = R.style.NicePink;
-                    recreate();
-                    break;
-                case (R.id.rb_default_theme): // стандартная тема
-                    currentTheme = R.style.Theme_MyCalculator;
-                    recreate();
+                    /////////////////////////////////////////// настройки темы
+                case (R.id.settings): // настройик темы
+                    Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+                    startActivityForResult(intent,SUCCESS_CODE);
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + view.getId());
             }
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == SUCCESS_CODE && resultCode == RESULT_OK){
+            summaries.setText(R.string.theme_changed_successfully);
+            if(data.getExtras() != null){
+                summaries.setText(data.getStringExtra(SUCCESS_MESSEGE));
+            }
+        }
+    }
 
     /**
      * Список существующих кнопок, содержащих свой ID
@@ -146,9 +154,7 @@ public class MainActivity extends AppCompatActivity {
         BACKSPACE(R.id.button_backspace),
         DOUBLE_ZERO(R.id.button_00),
         PERSENT(R.id.button_persent),
-        RADIO_BUTTON_CYAN(R.id.rb_cyan_theme),
-        RADIO_BUTTON_PINK(R.id.rb_pink_theme),
-        RADIO_BUTTON_DEFAULT(R.id.rb_default_theme);
+        SETTINGS(R.id.settings);
         private final int layoutID;
 
         ExistButtons(@IdRes int layoutID) {

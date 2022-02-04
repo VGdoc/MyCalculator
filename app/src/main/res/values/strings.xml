@@ -24,4 +24,8 @@
     <string name="pink_theme">Pink</string>
     <string name="cyan_theme">Cyan</string>
     <string name="default_theme">Default</string>
+    <string name="choose_theme">Choose your app theme</string>
+    <string name="settings">Settings</string>
+    <string name="theme_changed_successfully">Тема удачно изменена</string>
+    <string name="save_and_exit">Save and Exit</string>
 </resources>
