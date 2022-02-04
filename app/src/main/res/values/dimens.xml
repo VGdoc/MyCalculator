@@ -3,4 +3,5 @@
     <dimen name="summaries_text_size">50sp</dimen>
     <dimen name="button_text_size">30sp</dimen>
     <dimen name="summaries_text_size_landscape">40sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

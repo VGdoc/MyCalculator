@@ -66,4 +66,10 @@
         <item name="android:textColor">@color/black</item>
         <item name="background">@color/gray</item>
     </style>
+    <style name="Theme.MyCalculator.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.MyCalculator.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.MyCalculator.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
