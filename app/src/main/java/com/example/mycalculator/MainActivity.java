@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 /////////////////////////////////////////////////// кнопки действий
                 case (R.id.button_persent): // %
-                    //TODO
-                    summaries.setText((String) "Процент в разработке");
+                    Calc.operationPercent();
+                    renewSummaries();
                     break;
                 case (R.id.button_division): // деление
                     Calc.newOperation(Calc.Operations.DIVIDE);

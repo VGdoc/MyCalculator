@@ -21,6 +21,7 @@ public class Calc implements Parcelable {
         MINUS,
         MULTIPLY,
         DIVIDE,
+        PERCENT,
         EQUALS;
     }
 
@@ -103,6 +104,12 @@ public class Calc implements Parcelable {
     }
 
     public static void showEquals(){
+        newOperation(currentOperation);
+        currentOperation = null;
+    }
+
+    public static void operationPercent(){
+        numberToDisplay = result / 100 * numberToDisplay;
         newOperation(currentOperation);
         currentOperation = null;
     }
