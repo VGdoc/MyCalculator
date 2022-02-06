@@ -6,7 +6,9 @@ import android.os.Parcelable;
 
 public class Calc implements Parcelable {
 
+    private static boolean isDecimalInput = false;
     private static double result = 0;
+    private static double decimalPart = 0;
     private static boolean isResultShow; // флаг говорит нужно ли отрисовать результат вычислений
     private static Operations currentOperation;
     protected static final int START_NUMBER_ON_DISPLAY = 0; //стартовое значения поля TextView
@@ -43,12 +45,28 @@ public class Calc implements Parcelable {
      *
      * @param digit какую цифу добавить
      */
-    public static void addNewDigit(int digit) {
-        if (isResultShow){
+    public static void addNewDigit(double digit) {
+        if (isResultShow) {
             numberToDisplay = START_NUMBER_ON_DISPLAY;
             isResultShow = false;
         }
-        numberToDisplay = numberToDisplay * DIGIT_RATE + digit;
+
+        if (isDecimalInput) {
+            decimalPart = digit / recDivideDigitRateFinder(decimalLength());
+            numberToDisplay = numberToDisplay + decimalPart;
+        } else {
+            numberToDisplay = numberToDisplay * DIGIT_RATE + digit;
+        }
+
+    }
+
+    private static long recDivideDigitRateFinder(int decimalLength){
+
+        if (decimalLength == 0){
+            return 10;
+        }else {
+            return 10 * recDivideDigitRateFinder(decimalLength - 1);
+        }
     }
 
     public static double getNumberToDisplay() {
@@ -58,7 +76,9 @@ public class Calc implements Parcelable {
     public static void reset() {
         numberToDisplay = START_NUMBER_ON_DISPLAY;
         result = START_NUMBER_ON_DISPLAY;
+        decimalPart = START_NUMBER_ON_DISPLAY;
         currentOperation = null;
+        isDecimalInput = false;
     }
 
     @Override
@@ -101,16 +121,33 @@ public class Calc implements Parcelable {
 
         isResultShow = true;
         currentOperation = operation;
+        isDecimalInput = false;
     }
 
-    public static void showEquals(){
+    public static void showEquals() {
         newOperation(currentOperation);
         currentOperation = null;
     }
 
-    public static void operationPercent(){
+    public static void operationPercent() {
         numberToDisplay = result / 100 * numberToDisplay;
         newOperation(currentOperation);
         currentOperation = null;
+    }
+
+    public static void startDecimalInput() {
+        isDecimalInput = true;
+    }
+
+    /**
+     * метод возвращает длину дробной части числа на экране
+     * @return длина дробной части
+     */
+    private static int decimalLength(){
+        if(numberToDisplay == (long) numberToDisplay){
+            return 0;
+        }
+        String[] splitter = String.valueOf(numberToDisplay).split("\\.");
+        return splitter[1].length();
     }
 }

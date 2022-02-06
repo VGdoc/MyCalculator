@@ -70,9 +70,8 @@ public class MainActivity extends AppCompatActivity {
                     addDigitsToDisplay(0);
                     addDigitsToDisplay(0);
                     break;
-                case (R.id.button_coma):
-                    //TODO
-                    summaries.setText((String) "Функционал в разработке");
+                case (R.id.button_coma): // точка
+                    Calc.startDecimalInput();
                     break;
                 /////////////////////////////////////////////////// кнопки управления
                 case (R.id.button_clear):
