@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String THEME_SETTINGS = "theme_settings";
     public static final String SUCCESS_MESSEGE = "theme_changed";
     public static final int SUCCESS_CODE = 777;
+    public static final String RECREATE_FLAG = "RECREATE_FLAG";
     private static String savedScreenState = Long.toString(Calc.START_NUMBER_ON_DISPLAY);
     protected TextView summaries; // поле отображения
     private final Button[] buttons = new Button[ExistButtons.values().length]; // массив всех кнопок этой активити
@@ -87,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
                     summaries.setText((String) "Процент в разработке");
                     break;
                 case (R.id.button_division): // деление
-                    //TODO
-                    summaries.setText((String) "деление в разработке");
+                    Calc.newOperation(Calc.Operations.DIVIDE);
+                    renewSummaries();
                     break;
                 case (R.id.button_multiplication): // *
                     Calc.newOperation(Calc.Operations.MULTIPLY);
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     /**
      * Список существующих кнопок, содержащих свой ID
@@ -226,7 +229,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void renewSummaries(){
-            summaries.setText(String.format("%.0f",Calc.getNumberToDisplay()));
+            summaries.setText(fmt(Calc.getNumberToDisplay()));
+    }
+
+    /**
+     * Метод взят со стековерфлоу, убирает ненужные нули в дробном числе
+     * @param d дробное число
+     * @return красивая строка без лишних нулей
+     */
+    public static String fmt(double d)
+    {
+        if(d == (long) d)
+            return String.format("%d",(long)d);
+        else
+            return String.format("%s",d);
     }
 
 }

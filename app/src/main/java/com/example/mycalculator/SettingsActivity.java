@@ -37,6 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.THEME_SETTINGS, MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt(MainActivity.THEME_SETTINGS, currentTheme);
+                    editor.putBoolean(MainActivity.RECREATE_FLAG, true);
                     editor.apply();
                     finish();
                     break;
